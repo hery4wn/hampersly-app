@@ -21,41 +21,175 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+##Hampersly - Platform Marketplace Hampers
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Hampersly adalah sebuah aplikasi web marketplace yang dibangun menggunakan framework Laravel. Platform ini memungkinkan para penjual (seller) untuk membuka toko mereka sendiri dan menjual produk hampers, sementara para pelanggan (customer) dapat menelusuri, membeli, dan memberikan ulasan pada produk tersebut. Proyek ini juga dilengkapi dengan panel admin untuk mengelola keseluruhan platform.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Fitur Utama
+Untuk Customer
+Penjelajahan Produk: Halaman utama dengan galeri semua produk, pencarian, dan paginasi.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Halaman Detail: Halaman detail untuk setiap produk dan toko.
 
-## Laravel Sponsors
+Review & Rating: Kemampuan untuk memberikan dan melihat ulasan/rating produk.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Keranjang Belanja: Sistem keranjang belanja fungsional berbasis Session.
 
-### Premium Partners
+Checkout & Pembayaran: Alur checkout yang aman dengan integrasi Midtrans (mendukung QRIS, E-Wallet, Virtual Account, dll).
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Riwayat Pesanan: Halaman untuk melihat semua riwayat transaksi dan statusnya.
 
-## Contributing
+Untuk Seller
+Dashboard Khusus: Ruang kerja terpusat untuk mengelola toko, produk, dan pesanan.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Manajemen Toko: Membuat dan mengedit profil toko, termasuk foto profil.
 
-## Code of Conduct
+Manajemen Produk (CRUD): Kemampuan penuh untuk menambah, melihat, mengedit, dan menghapus produk.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Manajemen Pesanan: Melihat pesanan yang masuk dan mengubah status pesanan (Diproses, Dikirim, Selesai).
 
-## Security Vulnerabilities
+Untuk Admin
+Panel Admin Terproteksi: Dashboard khusus untuk admin yang dilindungi middleware.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Manajemen Platform: Melihat statistik, mengelola semua user, toko, produk, dan pesanan.
 
-## License
+Sistem Persetujuan Toko: Admin dapat menyetujui (approve) toko baru sebelum produknya bisa tampil secara publik.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Teknologi yang Digunakan
+Framework: Laravel 11+
+
+Bahasa: PHP 8.2+
+
+Database: MySQL
+
+Frontend: Tailwind CSS, Alpine.js
+
+Build Tool: Vite
+
+Payment Gateway: Midtrans (Sandbox)
+
+Panduan Instalasi & Konfigurasi Lokal
+Ikuti langkah-langkah ini untuk menjalankan proyek di lingkungan development lokal Anda.
+
+Prasyarat
+Lingkungan server lokal (direkomendasikan Laragon atau sejenisnya, yang sudah termasuk PHP, MySQL, Composer, Node.js & npm).
+
+Akun GitHub untuk clone repositori.
+
+Akun Ngrok untuk pengetesan webhook.
+
+Akun Midtrans Sandbox.
+
+Langkah-langkah Instalasi
+Clone Repositori
+Buka terminal dan jalankan:
+
+Bash
+
+git clone https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git
+cd NAMA_REPO_ANDA
+Install Dependensi PHP
+
+Bash
+
+composer install
+Siapkan File Konfigurasi Lingkungan (.env)
+Salin file contoh dan buat file .env Anda sendiri.
+
+Bash
+
+# Untuk Windows
+copy .env.example .env
+
+# Untuk Mac/Linux
+cp .env.example .env
+Konfigurasi Database & Midtrans di .env
+Buka file .env yang baru dibuat dan isi bagian-bagian berikut sesuai dengan pengaturan lokal Anda:
+
+Cuplikan kode
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=hampersly  # Pastikan Anda sudah membuat database kosong dengan nama ini
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Isi dengan key dari dashboard Midtrans Sandbox Anda
+MIDTRANS_MERCHANT_ID=...
+MIDTRANS_CLIENT_KEY=...
+MIDTRANS_SERVER_KEY=...
+MIDTRANS_IS_PRODUCTION=false
+Generate Kunci Aplikasi Laravel
+
+Bash
+
+php artisan key:generate
+Buat Struktur Database (Migrasi)
+Perintah ini akan membuat semua tabel yang dibutuhkan di database Anda.
+
+Bash
+
+php artisan migrate
+Buat Symbolic Link untuk Storage
+Ini wajib agar file yang di-upload (gambar produk & toko) bisa diakses.
+
+Bash
+
+php artisan storage:link
+Install Dependensi JavaScript
+
+Bash
+
+npm install
+Menjalankan Proyek & Simulasi Pembayaran
+Untuk menjalankan proyek dengan semua fitur (termasuk notifikasi pembayaran), Anda perlu menjalankan 3 terminal.
+
+Terminal 1: Jalankan Vite
+Proses ini meng-compile aset CSS dan JS. Biarkan terus berjalan.
+
+Bash
+
+npm run dev
+Terminal 2: Jalankan Server Laravel
+Ini adalah server utama aplikasi web Anda.
+
+Bash
+
+php artisan serve
+Aplikasi Anda sekarang bisa diakses di http://127.0.0.1:8000.
+
+Terminal 3: Jalankan Ngrok
+Ini adalah jembatan agar server Midtrans bisa mengirim notifikasi ke laptop Anda.
+
+Bash
+
+ngrok http 8000
+Ngrok akan memberikan Anda sebuah URL publik, contoh: https://xxxxxxxx.ngrok-free.app.
+
+Konfigurasi Webhook di Midtrans
+
+Login ke dashboard Midtrans Sandbox Anda.
+
+Pergi ke Settings > Configuration.
+
+Di kolom Payment Notification URL, masukkan URL Ngrok Anda diikuti dengan /api/midtrans-webhook.
+
+Contoh: https://xxxxxxxx.ngrok-free.app/api/midtrans-webhook
+
+Klik Save.
+
+Simulasi Pembayaran
+
+Lakukan proses checkout di website Anda sampai muncul pop-up Midtrans.
+
+Untuk melakukan pembayaran tes, Anda bisa menggunakan nomor kartu, e-wallet, atau instruksi lain yang disediakan di dokumentasi resmi Midtrans.
+
+Lihat di sini: Cara Testing Pembayaran di Sandbox Midtrans
+
+Struktur Role
+Customer: Role default saat user mendaftar.
+
+Seller: Customer yang sudah membuat toko. Role di database akan otomatis berubah menjadi seller.
+
+Admin: Dibuat secara manual. Daftarkan akun baru, lalu ubah nilainya di tabel users pada kolom role menjadi admin.
