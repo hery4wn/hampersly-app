@@ -21,175 +21,159 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-##Hampersly - Platform Marketplace Hampers
+# Hampersly - Platform Marketplace Hampers
 
 Hampersly adalah sebuah aplikasi web marketplace yang dibangun menggunakan framework Laravel. Platform ini memungkinkan para penjual (seller) untuk membuka toko mereka sendiri dan menjual produk hampers, sementara para pelanggan (customer) dapat menelusuri, membeli, dan memberikan ulasan pada produk tersebut. Proyek ini juga dilengkapi dengan panel admin untuk mengelola keseluruhan platform.
 
-Fitur Utama
-Untuk Customer
-Penjelajahan Produk: Halaman utama dengan galeri semua produk, pencarian, dan paginasi.
+---
 
-Halaman Detail: Halaman detail untuk setiap produk dan toko.
+## Fitur Utama
 
-Review & Rating: Kemampuan untuk memberikan dan melihat ulasan/rating produk.
+### Untuk Customer
+-   **Penjelajahan Produk:** Halaman utama dengan galeri semua produk, pencarian, dan paginasi.
+-   **Halaman Detail:** Halaman detail untuk setiap produk dan toko.
+-   **Review & Rating:** Kemampuan untuk memberikan dan melihat ulasan/rating produk.
+-   **Keranjang Belanja:** Sistem keranjang belanja fungsional berbasis Session.
+-   **Checkout & Pembayaran:** Alur checkout yang aman dengan integrasi **Midtrans** (mendukung QRIS, E-Wallet, Virtual Account, dll).
+-   **Riwayat Pesanan:** Halaman untuk melihat semua riwayat transaksi dan statusnya.
 
-Keranjang Belanja: Sistem keranjang belanja fungsional berbasis Session.
+### Untuk Seller
+-   **Dashboard Khusus:** Ruang kerja terpusat untuk mengelola toko, produk, dan pesanan.
+-   **Manajemen Toko:** Membuat dan mengedit profil toko, termasuk foto profil.
+-   **Manajemen Produk (CRUD):** Kemampuan penuh untuk menambah, melihat, mengedit, dan menghapus produk.
+-   **Manajemen Pesanan:** Melihat pesanan yang masuk dan mengubah status pesanan (Diproses, Dikirim, Selesai).
 
-Checkout & Pembayaran: Alur checkout yang aman dengan integrasi Midtrans (mendukung QRIS, E-Wallet, Virtual Account, dll).
+### Untuk Admin
+-   **Panel Admin Terproteksi:** Dashboard khusus untuk admin yang dilindungi middleware.
+-   **Manajemen Platform:** Melihat statistik, mengelola semua user, toko, produk, dan pesanan.
+-   **Sistem Persetujuan Toko:** Admin dapat menyetujui (approve) toko baru sebelum produknya bisa tampil secara publik.
 
-Riwayat Pesanan: Halaman untuk melihat semua riwayat transaksi dan statusnya.
+---
 
-Untuk Seller
-Dashboard Khusus: Ruang kerja terpusat untuk mengelola toko, produk, dan pesanan.
+## Teknologi yang Digunakan
+-   **Framework:** Laravel 11+
+-   **Bahasa:** PHP 8.2+
+-   **Database:** MySQL
+-   **Frontend:** Tailwind CSS, Alpine.js
+-   **Build Tool:** Vite
+-   **Payment Gateway:** Midtrans (Sandbox)
 
-Manajemen Toko: Membuat dan mengedit profil toko, termasuk foto profil.
+---
 
-Manajemen Produk (CRUD): Kemampuan penuh untuk menambah, melihat, mengedit, dan menghapus produk.
+## Panduan Instalasi & Konfigurasi Lokal
 
-Manajemen Pesanan: Melihat pesanan yang masuk dan mengubah status pesanan (Diproses, Dikirim, Selesai).
-
-Untuk Admin
-Panel Admin Terproteksi: Dashboard khusus untuk admin yang dilindungi middleware.
-
-Manajemen Platform: Melihat statistik, mengelola semua user, toko, produk, dan pesanan.
-
-Sistem Persetujuan Toko: Admin dapat menyetujui (approve) toko baru sebelum produknya bisa tampil secara publik.
-
-Teknologi yang Digunakan
-Framework: Laravel 11+
-
-Bahasa: PHP 8.2+
-
-Database: MySQL
-
-Frontend: Tailwind CSS, Alpine.js
-
-Build Tool: Vite
-
-Payment Gateway: Midtrans (Sandbox)
-
-Panduan Instalasi & Konfigurasi Lokal
 Ikuti langkah-langkah ini untuk menjalankan proyek di lingkungan development lokal Anda.
 
-Prasyarat
-Lingkungan server lokal (direkomendasikan Laragon atau sejenisnya, yang sudah termasuk PHP, MySQL, Composer, Node.js & npm).
+### Prasyarat
+-   Lingkungan server lokal (direkomendasikan **Laragon** atau sejenisnya, yang sudah termasuk PHP, MySQL, Composer, Node.js & npm).
+-   Akun [GitHub](https://github.com/) untuk clone repositori.
+-   Akun [Ngrok](https://ngrok.com/download) untuk pengetesan webhook.
+-   Akun [Midtrans Sandbox](https://dashboard.sandbox.midtrans.com/register).
 
-Akun GitHub untuk clone repositori.
+### Langkah-langkah Instalasi
+1.  **Clone Repositori**
+    Buka terminal dan jalankan:
+    ```bash
+    git clone [https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git](https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git)
+    cd NAMA_REPO_ANDA
+    ```
 
-Akun Ngrok untuk pengetesan webhook.
+2.  **Install Dependensi PHP**
+    ```bash
+    composer install
+    ```
 
-Akun Midtrans Sandbox.
+3.  **Siapkan File Konfigurasi Lingkungan (`.env`)**
+    Salin file contoh dan buat file `.env` Anda sendiri.
+    ```bash
+    # Untuk Windows
+    copy .env.example .env
 
-Langkah-langkah Instalasi
-Clone Repositori
-Buka terminal dan jalankan:
+    # Untuk Mac/Linux
+    cp .env.example .env
+    ```
 
-Bash
+4.  **Konfigurasi Database & Midtrans di `.env`**
+    Buka file `.env` yang baru dibuat dan isi bagian-bagian berikut sesuai dengan pengaturan lokal Anda:
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=hampersly  # Pastikan Anda sudah membuat database kosong dengan nama ini
+    DB_USERNAME=root
+    DB_PASSWORD=
 
-git clone https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git
-cd NAMA_REPO_ANDA
-Install Dependensi PHP
+    # Isi dengan key dari dashboard Midtrans Sandbox Anda
+    MIDTRANS_MERCHANT_ID=...
+    MIDTRANS_CLIENT_KEY=...
+    MIDTRANS_SERVER_KEY=...
+    MIDTRANS_IS_PRODUCTION=false
+    ```
 
-Bash
+5.  **Generate Kunci Aplikasi Laravel**
+    ```bash
+    php artisan key:generate
+    ```
 
-composer install
-Siapkan File Konfigurasi Lingkungan (.env)
-Salin file contoh dan buat file .env Anda sendiri.
+6.  **Buat Struktur Database (Migrasi)**
+    Perintah ini akan membuat semua tabel yang dibutuhkan di database Anda.
+    ```bash
+    php artisan migrate
+    ```
 
-Bash
+7.  **Buat Symbolic Link untuk Storage**
+    Ini wajib agar file yang di-upload (gambar produk & toko) bisa diakses.
+    ```bash
+    php artisan storage:link
+    ```
 
-# Untuk Windows
-copy .env.example .env
+8.  **Install Dependensi JavaScript**
+    ```bash
+    npm install
+    ```
 
-# Untuk Mac/Linux
-cp .env.example .env
-Konfigurasi Database & Midtrans di .env
-Buka file .env yang baru dibuat dan isi bagian-bagian berikut sesuai dengan pengaturan lokal Anda:
+---
 
-Cuplikan kode
+## Menjalankan Proyek & Simulasi Pembayaran
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=hampersly  # Pastikan Anda sudah membuat database kosong dengan nama ini
-DB_USERNAME=root
-DB_PASSWORD=
-
-# Isi dengan key dari dashboard Midtrans Sandbox Anda
-MIDTRANS_MERCHANT_ID=...
-MIDTRANS_CLIENT_KEY=...
-MIDTRANS_SERVER_KEY=...
-MIDTRANS_IS_PRODUCTION=false
-Generate Kunci Aplikasi Laravel
-
-Bash
-
-php artisan key:generate
-Buat Struktur Database (Migrasi)
-Perintah ini akan membuat semua tabel yang dibutuhkan di database Anda.
-
-Bash
-
-php artisan migrate
-Buat Symbolic Link untuk Storage
-Ini wajib agar file yang di-upload (gambar produk & toko) bisa diakses.
-
-Bash
-
-php artisan storage:link
-Install Dependensi JavaScript
-
-Bash
-
-npm install
-Menjalankan Proyek & Simulasi Pembayaran
 Untuk menjalankan proyek dengan semua fitur (termasuk notifikasi pembayaran), Anda perlu menjalankan 3 terminal.
 
-Terminal 1: Jalankan Vite
-Proses ini meng-compile aset CSS dan JS. Biarkan terus berjalan.
+1.  **Terminal 1: Jalankan Vite**
+    Proses ini meng-compile aset CSS dan JS. Biarkan terus berjalan.
+    ```bash
+    npm run dev
+    ```
 
-Bash
+2.  **Terminal 2: Jalankan Server Laravel**
+    Ini adalah server utama aplikasi web Anda.
+    ```bash
+    php artisan serve
+    ```
+    Aplikasi Anda sekarang bisa diakses di `http://127.0.0.1:8000`.
 
-npm run dev
-Terminal 2: Jalankan Server Laravel
-Ini adalah server utama aplikasi web Anda.
+3.  **Terminal 3: Jalankan Ngrok**
+    Ini adalah jembatan agar server Midtrans bisa mengirim notifikasi ke laptop Anda.
+    ```bash
+    ngrok http 8000
+    ```
+    Ngrok akan memberikan Anda sebuah URL publik, contoh: `https://xxxxxxxx.ngrok-free.app`.
 
-Bash
+4.  **Konfigurasi Webhook di Midtrans**
+    - Login ke dashboard Midtrans Sandbox Anda.
+    - Pergi ke **Settings > Configuration**.
+    - Di kolom **Payment Notification URL**, masukkan URL Ngrok Anda diikuti dengan `/api/midtrans-webhook`.
+    - Contoh: `https://xxxxxxxx.ngrok-free.app/api/midtrans-webhook`
+    - Klik **Save**.
 
-php artisan serve
-Aplikasi Anda sekarang bisa diakses di http://127.0.0.1:8000.
+5.  **Simulasi Pembayaran**
+    - Lakukan proses checkout di website Anda sampai muncul pop-up Midtrans.
+    - Untuk melakukan pembayaran tes, Anda bisa menggunakan nomor kartu, e-wallet, atau instruksi lain yang disediakan di dokumentasi resmi Midtrans.
+    - **Lihat di sini:** [Cara Testing Pembayaran di Sandbox Midtrans](https://docs.midtrans.com/docs/testing-payments-on-sandbox)
 
-Terminal 3: Jalankan Ngrok
-Ini adalah jembatan agar server Midtrans bisa mengirim notifikasi ke laptop Anda.
+---
 
-Bash
+## Struktur Role
 
-ngrok http 8000
-Ngrok akan memberikan Anda sebuah URL publik, contoh: https://xxxxxxxx.ngrok-free.app.
-
-Konfigurasi Webhook di Midtrans
-
-Login ke dashboard Midtrans Sandbox Anda.
-
-Pergi ke Settings > Configuration.
-
-Di kolom Payment Notification URL, masukkan URL Ngrok Anda diikuti dengan /api/midtrans-webhook.
-
-Contoh: https://xxxxxxxx.ngrok-free.app/api/midtrans-webhook
-
-Klik Save.
-
-Simulasi Pembayaran
-
-Lakukan proses checkout di website Anda sampai muncul pop-up Midtrans.
-
-Untuk melakukan pembayaran tes, Anda bisa menggunakan nomor kartu, e-wallet, atau instruksi lain yang disediakan di dokumentasi resmi Midtrans.
-
-Lihat di sini: Cara Testing Pembayaran di Sandbox Midtrans
-
-Struktur Role
-Customer: Role default saat user mendaftar.
-
-Seller: Customer yang sudah membuat toko. Role di database akan otomatis berubah menjadi seller.
-
-Admin: Dibuat secara manual. Daftarkan akun baru, lalu ubah nilainya di tabel users pada kolom role menjadi admin.
+-   **Customer:** Role default saat user mendaftar.
+-   **Seller:** Customer yang sudah membuat toko. Role di database akan otomatis berubah menjadi `seller`.
+-   **Admin:** Dibuat secara manual. Daftarkan akun baru, lalu ubah nilainya di tabel `users` pada kolom `role` menjadi `admin`.
